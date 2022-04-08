@@ -1,3 +1,3 @@
 # Algorithms-and-Data-Structures
 
-My store of solutions to common coding challenges.
+A store of my solutions to common coding challenges.
