@@ -11,37 +11,34 @@ class inventoryList {
         this.#collection = [];
         for (let index = 0; index < this.#order.length; index++) {
             const element = this.#order[index];
-            if (element !== '') {
+            if (element !== '')
                 this.#collection.push(element);
-            } else {
+            else
                 continue;
-            }
         }
     };
 
     add (name) {
-        if (this.#inventory[name]) {
+        if (this.#inventory[name])
             return;
-        } else {
-            this.#inventory[name] = this.#index;
-            this.#order[this.#index] = name;
-            this.#index++;
-        }
+        else
+            this.#inventory[name] = this.#index,
+                this.#order[this.#index] = name,
+                this.#index++;
         this.#arrange();
     };
 
     remove (name) {
-        if (this.#inventory[name] >= 0) {
+        if (this.#inventory[name] >= 0)
             this.#order[this.#inventory[name]] = '';
-        } else {
+        else
             return;
-        }
         this.#arrange();
     };
 
     getList () {
         return this.#collection;
-    }; 
+    };
 
 }
 
