@@ -1,0 +1,68 @@
+const reduce = (A) => {
+    const sum = A.reduce((c, n) => c + n),
+        goal = (sum / 2);
+
+    let index = 0,
+        currentSum = sum, newArray = [];
+    filtersNeeded = 0;
+
+    const merge_sort = (values) => {
+        if (values.length <= 1)
+            return values;
+
+        const middle_index = Math.floor(values.length / 2),
+            left_values = merge_sort(values.slice(0, middle_index)),
+            right_values = merge_sort(values.slice(middle_index)),
+            left_length = left_values.length,
+            right_length = right_values.length;
+
+        let left_index = 0,
+            right_index = 0,
+            sorted_values = [];
+
+        while (left_index < left_length && right_index < right_length) {
+            left_values[left_index] < right_values[right_index] ?
+                (sorted_values.push(left_values[left_index]),
+                    left_index++)
+                :
+                (sorted_values.push(right_values[right_index]),
+                    right_index++);
+        }
+
+        sorted_values = sorted_values.concat(left_values.slice(left_index)),
+            sorted_values = sorted_values.concat(right_values.slice(right_index));
+        return sorted_values;
+    };
+
+    newArray = merge_sort(A);
+
+    index = newArray.length - 1;
+
+    while (currentSum > goal) {
+        if (index == newArray.length - 1) {
+            newArray[index] /= 2,
+                filtersNeeded++,
+                currentSum -= newArray[index],
+                index--;
+        } else {
+            let i = newArray.length - 1;
+            for (i; i > index; i--) {
+                if (newArray[i] > newArray[index]) {
+                    newArray[i] /= 2,
+                        filtersNeeded++,
+                        currentSum -= newArray[i];
+                    break;
+                } else {
+                    if (i == index + 1) {
+                        newArray[index] /= 2,
+                            filtersNeeded++,
+                            currentSum -= newArray[index],
+                            index--;
+                        break;
+                    }
+                }
+            }
+        }
+    };
+    return filtersNeeded;
+};

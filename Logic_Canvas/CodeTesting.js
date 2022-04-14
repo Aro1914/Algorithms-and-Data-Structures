@@ -1,7 +1,3 @@
-// const friends = [0, 3, 2, 2], cars = [4, 6, 5, 5];
-
-// const friends = [4, 6, 9, 7, 3, 2, 2], cars = [3, 6, 8, 4, 6, 5, 5];
-
 const populateArrays = (randomArray, randomCompliment, size, negPos) => {
     let i = 0;
     for (i; i < size; i++) {
@@ -86,12 +82,48 @@ const beEco = (P, S) => {
     return shapeShifter;
 };
 
+const eco = (P, S) => {
+    function findLargest (arg) {
+        let largest = -Infinity;
+        let i = 0;
+        let ind = 0;
+        for (i = 0; i < arg.length; i++) {
+            if (largest < arg[i]) {
+                largest = arg[i];
+                ind = i;
+            }
+        }
+        return ind;
+    }
+
+    let sum = 0;
+    let i = 0;
+    let cars = 0;
+    let arrInd = 0;
+    for (i = 0; i < P.length; i++) {
+        sum += P[i];
+    }
+    let difference = sum;
+    while (difference > 0) {
+        arrInd = findLargest(S);
+        difference = difference - S[arrInd];
+        S[arrInd] = 0;
+        cars++;
+    }
+    return cars;
+};
+
+
 const friends = [], cars = [];
 
-populateArrays(cars, friends, 100000000, 9);
+populateArrays(cars, friends, 100000, 9);
 
-// console.log(friends, cars);
+// console.log(cars, friends);
 
 console.time('beEco');
 console.log(beEco(friends, cars));
 console.timeEnd('beEco');
+
+console.time('ecoSoT');
+console.log(eco(friends, cars));
+console.timeEnd('ecoSoT');

@@ -1,0 +1,42 @@
+const beEco = (P, S) => {
+    let sum = P.reduce((a, b) => a + b);
+    if (sum == 0) return sum;
+    const lenS = S.length,
+        lenP = P.length,
+        arrayObj = {},
+        newS = [];
+    let i = 0,
+        shapeShifter = 0;
+
+    for (i; i < lenS; i++) {
+        const element = S[i];
+        if (!element) continue;
+        else if (arrayObj[element])
+            arrayObj[element]++,
+                shapeShifter++;
+        else
+            arrayObj[element] = 1,
+                shapeShifter++;
+    }
+
+    for (const key in arrayObj) {
+        if (arrayObj[key] > 1) {
+            let i = 0;
+            for (i; i < arrayObj[key]; i++)
+                newS[shapeShifter - 1] = Number(key),
+                    shapeShifter--;
+        }
+        else
+            newS[shapeShifter - 1] = Number(key),
+                shapeShifter--;
+    }
+
+    i = 0, shapeShifter = 0;
+    for (i; i < lenP; i++) {
+        const seats = Number(newS[i]);
+        sum -= seats, shapeShifter++;
+        if (sum <= 0)
+            return shapeShifter;
+    }
+    return shapeShifter;
+};
