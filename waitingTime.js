@@ -1,11 +1,6 @@
-
-
 const testPatience = (A, X, Y, Z) => {
-    if (!A.length) {
+    if (!A.length)
         return -1;
-    }
-    let i = 0,
-        waitingTime = 1;
 
     const dispensers = {
         X: X,
@@ -16,43 +11,39 @@ const testPatience = (A, X, Y, Z) => {
             X: 0,
             Y: 0,
             Z: 0
-        };
-    len = A.length;
+        },
+        len = A.length;
+
+    let i = 0,
+        count = -1;
 
     while (i < len) {
-        const element = A[i];
-        let isFree = true; free = 0, occupied = 0;
-        // console.log(A[i]);
+        let free = 0;
         for (const key in stations) {
-            if (stations[key]) {
-                stations[key]--;
-                occupied++;
-            } else {
+            const element = A[i];
+            if (!stations[key]) {
                 if (dispensers[key] >= element) {
                     stations[key] = element;
                     dispensers[key] -= element;
                     i++;
-                    break;
-                } else {
-                    free++;
-                    occupied++;
                 }
+                else
+                    free++;
             }
         }
-        if (free == 3) {
-            return -1;
-        } else {
-            free = 0;
-        }
-        if (occupied == 3) {
-            waitingTime++;
-        } else {
-            occupied = 0;
-        }
-        // console.log(waitingTime);
-    }
 
-    return waitingTime;
+        if (free == 3)
+            return -1;
+        else
+            free = 0;
+
+        for (const key in stations)
+            if (stations[key])
+                stations[key]--;
+
+        count++;
+    }
+    return count;
 };
 
 const A = [2, 8, 4, 3, 2],
