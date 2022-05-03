@@ -40,7 +40,6 @@ const testPatience = (A, X, Y, Z) => {
         for (const key in stations)
             if (stations[key])
                 stations[key]--;
-
         count++;
     }
     return count;
