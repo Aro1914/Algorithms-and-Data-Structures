@@ -29,14 +29,14 @@ const arrayOfObjects = [
         age: 14
     },
     {
-        firstName: 'Shully',
+        firstName: 'shully',
         lastName: 'igbavwe',
         id: 3,
         sex: 'female',
         age: 16
     },
     {
-        firstName: 'Esther',
+        firstName: 'esther',
         lastName: 'Hinata',
         id: 9.51,
         sex: 'female',
@@ -60,9 +60,10 @@ const arrayOfObjects = [
 const sortArrayOfObjects = (arrayOfObjects, commonProperty) => {
     let isInt = false;
     return arrayOfObjects.map((el, index) => {
-        isInt = !isNaN(el?.[commonProperty]);        
-        !isInt && (el[commonProperty] = el?.[commonProperty]?.[0]?.toUpperCase()?.concat(el?.[commonProperty]?.slice(1) ?? index));
-        return `${el?.[commonProperty]}^-.-^${index}`;
+        isInt = !isNaN(el?.[commonProperty]);
+        return !isInt ?
+            `${el?.[commonProperty]?.[0]?.toUpperCase()?.concat(el?.[commonProperty]?.slice(1))}^-.-^${index}` :
+            `${el?.[commonProperty]}^-.-^${index}`;
     })?.sort(isInt ? (a, b) => Number(a?.split('^-.-^')?.[0]) - Number(b?.split('^-.-^')?.[0]) : undefined)?.map(el => arrayOfObjects[el?.split('^-.-^')?.[1]]);
 };
-console.log(sortArrayOfObjects(arrayOfObjects, 'age'));
+console.log(sortArrayOfObjects(arrayOfObjects, 'firstName'));
