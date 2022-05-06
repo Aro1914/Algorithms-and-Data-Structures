@@ -33,7 +33,8 @@ const arrayOfObjects = [
         lastName: 'igbavwe',
         id: 3,
         sex: 'female',
-        age: 16
+        age: 16,
+        nationality: 'Nigerian'
     },
     {
         firstName: 'esther',
@@ -52,12 +53,15 @@ const arrayOfObjects = [
 ];
 
 /**
- * Sorts an array of objects by a property one level deep common to all the objects in the array. Returns the sorted array of objects.
+ * Sorts an array of objects by a property present one level deep, in any object in the array. If successful, returns the sorted array of objects, else the original array is returned.
  * @param {Array<Object>} arrayOfObjects 
  * @param {String} commonProperty 
  * @returns {Array<Object>} sortedArrayOfObjects
  */
 const sortArrayOfObjects = (arrayOfObjects, commonProperty) => {
+    if (!arrayOfObjects) return arrayOfObjects;
+    if (!Array.isArray(arrayOfObjects)) return arrayOfObjects;
+    if (arrayOfObjects.length <= 1) return arrayOfObjects;
     let isInt = false;
     return arrayOfObjects.map((el, index) => {
         isInt = !isNaN(el?.[commonProperty]);
@@ -66,4 +70,4 @@ const sortArrayOfObjects = (arrayOfObjects, commonProperty) => {
             `${el?.[commonProperty]}^-.-^${index}`;
     })?.sort(isInt ? (a, b) => Number(a?.split('^-.-^')?.[0]) - Number(b?.split('^-.-^')?.[0]) : undefined)?.map(el => arrayOfObjects[el?.split('^-.-^')?.[1]]);
 };
-console.log(sortArrayOfObjects(arrayOfObjects, 'firstName'));
+console.log(sortArrayOfObjects([{ id: 1 }], 'id'));
