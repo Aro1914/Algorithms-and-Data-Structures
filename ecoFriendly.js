@@ -28,10 +28,8 @@ const beEco = (P, S) => {
         if (!element) continue;
         else if (arrayObj[element])
             arrayObj[element]++;
-        // shapeShifter++;
         else
             arrayObj[element] = 1;
-        // shapeShifter++;
     }
 
     for (const key in arrayObj) {
@@ -45,37 +43,6 @@ const beEco = (P, S) => {
             newS[shapeShifter] = Number(key),
                 shapeShifter++;
     }
-
-    // const merge_sort = (values) => {
-    //     if (values.length <= 1)
-    //         return values;
-
-    //     const middle_index = Math.floor(values.length / 2),
-    //         left_values = merge_sort(values.slice(0, middle_index)),
-    //         right_values = merge_sort(values.slice(middle_index)),
-    //         left_length = left_values.length,
-    //         right_length = right_values.length;
-
-    //     let left_index = 0,
-    //         right_index = 0,
-    //         sorted_values = [];
-
-    //     while (left_index < left_length && right_index < right_length) {
-    //         left_values[left_index] < right_values[right_index] ?
-    //             (sorted_values.push(left_values[left_index]),
-    //                 left_index++)
-    //             :
-    //             (sorted_values.push(right_values[right_index]),
-    //                 right_index++);
-    //     }
-
-    //     sorted_values = sorted_values.concat(left_values.slice(left_index)),
-    //         sorted_values = sorted_values.concat(right_values.slice(right_index));
-    //     return sorted_values;
-    // };
-
-    // newS = merge_sort(S);
-
     i = lenP - 1, shapeShifter = 0;
     for (i; i > 0; i--) {
         const seats = Number(newS[i]);
@@ -88,7 +55,7 @@ const beEco = (P, S) => {
 
 const friends = [], cars = [];
 
-populateArrays(cars, friends, 100000000, 9);
+populateArrays(cars, friends, 1000, 9);
 
 // console.log(friends, cars);
 

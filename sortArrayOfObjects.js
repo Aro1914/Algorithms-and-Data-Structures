@@ -77,4 +77,5 @@ const sortArrayOfObjects = (arrayOfObjects, property) => {
             `${el?.[property]}^-.-^${index}`;
     })?.sort(isInt ? (a, b) => Number(a?.split('^-.-^')?.[0]) - Number(b?.split('^-.-^')?.[0]) : undefined)?.map(el => arrayOfObjects[el?.split('^-.-^')?.[1]]);
 };
-console.log(sortArrayOfObjects(arrayOfObjects, 'cars'));
+console.log(sortArrayOfObjects(arrayOfObjects, 'car'));
+// console.log(arrayOfObjects.sort());
